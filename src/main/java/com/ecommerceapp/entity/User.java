@@ -2,13 +2,7 @@ package com.ecommerceapp.entity;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="users")
@@ -20,6 +14,10 @@ public class User {
 	
 	private String name;
 	private String email;
+
+
+
+	@Column(nullable = false)
 	private String password;
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

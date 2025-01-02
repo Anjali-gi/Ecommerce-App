@@ -10,20 +10,27 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+
 @Entity
 @Table(name="orders")
 public class Order {
-	
+
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	private String name;
+
 	private double price;
+
 	private int quantity;
+
 	private Date date;
+
 	private double amount;
-	
+
 	@ManyToOne
-	@JoinColumn(name="userId")
+	@JoinColumn(name = "userId")
 	private User user;
 
 	public Long getId() {
@@ -32,6 +39,14 @@ public class Order {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public double getPrice() {
@@ -73,6 +88,5 @@ public class Order {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
 
 }

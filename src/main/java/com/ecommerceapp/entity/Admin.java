@@ -1,12 +1,7 @@
 package com.ecommerceapp.entity;
 
+import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Value;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "admins")
@@ -19,8 +14,11 @@ public class Admin {
 	private String name;
 	private String email;
 	
-	@Value("qwerty")
-	private String password;
+	//@Value("qwerty")
+	//private String password;
+
+	@Column(nullable = false)
+	private String password = "qwerty"; // Default value
 
 	public Long getId() {
 		return id;

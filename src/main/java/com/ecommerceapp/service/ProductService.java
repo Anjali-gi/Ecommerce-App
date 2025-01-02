@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ecommerceapp.entity.Product;
 import com.ecommerceapp.repo.ProductRepo;
 
+
 @Service
 public class ProductService {
 
@@ -20,24 +21,23 @@ public class ProductService {
 	}
 
 	public Product getProductById(Long id) {
-		return productRepo.findById(id).orElseThrow(() -> new RuntimeException("Product with id " + id + "not found"));
+		return productRepo.findById(id).orElseThrow(() -> new RuntimeException("Product with id " + id + " not found"));
 	}
-	
+
 	public void createProduct(Product Product) {
 		productRepo.save(Product);
 	}
 
 	public void updateProduct(Product Product) {
-		productRepo.findById(Product.getId())
-				.orElseThrow(() -> new RuntimeException("Product with id " + Product.getId() + "not found"));
+		productRepo.findById(Product.getId()).orElseThrow(() -> new RuntimeException("Product with id " + Product.getId() + " not found"));
 		productRepo.save(Product);
 	}
 
 	public void deleteProduct(Long id) {
-		productRepo.findById(id).orElseThrow(() -> new RuntimeException("Product with id " + id + "not found"));
+		productRepo.findById(id).orElseThrow(() -> new RuntimeException("Product with id " + id + " not found"));
 		productRepo.deleteById(id);
 	}
-	
+
 	public Product findProductByName(String name) {
 		return productRepo.findByName(name);
 	}

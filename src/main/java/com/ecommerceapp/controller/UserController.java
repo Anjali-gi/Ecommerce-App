@@ -11,42 +11,42 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.ecommerceapp.entity.User;
 import com.ecommerceapp.service.UserService;
 
+
 @Controller
 public class UserController {
+
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/add/user")
-	public String addUser() {
-		return "AddUser";
+	@GetMapping("/update/user/{id}")
+	public String updateUser(@PathVariable("id") Long id, Model model)
+	{
+		model.addAttribute("user", userService.getUserById(id));
+
+		return "UpdateUser";
 	}
-	
+
 	@PostMapping("/add/user")
 	public String addUser(User user) {
 		userService.createUser(user);
-		return "Login";
+
+		//return "LoginPage";
+		return "redirect:/admin/home";
+
 	}
-	
-	@GetMapping("/update/user/{id}")
-	public String updateUser(@PathVariable Long id, Model model){
-		model.addAttribute("admin", userService.getUserById(id));
-		
-		return "UpdateUser";	
-	}
-	
+
 	@PostMapping("/update/user")
-	public String updateUser(User user){
-		userService.createUser(user);
-		
-		return "/admin/home";	
+	public String updateUser(User user) {
+		userService.updateUser(user);
+
+		return "redirect:/admin/home";
 	}
-	
-	@DeleteMapping("/delete/user/{id}")
+
+	@GetMapping("/delete/user/{id}")
 	public String deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
-		
-		return "/admin/home";
-		
+
+		return "redirect:/admin/home";
 	}
-	
+
 }
